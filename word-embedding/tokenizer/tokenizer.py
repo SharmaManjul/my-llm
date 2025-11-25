@@ -1,4 +1,5 @@
 import re
+from simple_tokenizer_v1 import SimpleTokenizerV1
 
 # Reading the raw text file
 with open("the-verdict.txt", "r", encoding="utf-8") as f:
@@ -21,3 +22,13 @@ print("Vocabulary size:", vocab_size)
 vocab = {token:integer for integer, token in enumerate(all_words)}
 for i, item in enumerate(list(vocab.items())[:6]):
     print(item)
+print('\n')
+
+# Using the tokenizer class to encode and decode
+tokenizer = SimpleTokenizerV1(vocab)
+sample_text = """"It's the last he painted, you know," 
+           Mrs. Gisburn said with pardonable pride."""
+ids = tokenizer.encode(sample_text)
+print("Ids of encoded sample text:", ids)
+decode_text = tokenizer.decode(ids)
+print("Decoded text from ids:", decode_text)
